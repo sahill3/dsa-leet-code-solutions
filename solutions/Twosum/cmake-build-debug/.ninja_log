@@ -1,0 +1,11 @@
+# ninja log v5
+0	461	7131059510080459	CMakeFiles/Twosum.dir/main.cpp.obj	d8cde541ed3bb2af
+463	649	7131059511905667	Twosum.exe	4d790aad833992e6
+3	442	7131059890514197	CMakeFiles/Twosum.dir/main.cpp.obj	d8cde541ed3bb2af
+443	597	7131059891980277	Twosum.exe	4d790aad833992e6
+3	445	7131060027331027	CMakeFiles/Twosum.dir/main.cpp.obj	d8cde541ed3bb2af
+445	567	7131060028518196	Twosum.exe	4d790aad833992e6
+4	434	7131060145402431	CMakeFiles/Twosum.dir/main.cpp.obj	d8cde541ed3bb2af
+435	568	7131060146689253	Twosum.exe	4d790aad833992e6
+7	810	7254455970326294	CMakeFiles/Twosum.dir/main.cpp.obj	d8cde541ed3bb2af
+810	1284	7254455975016281	Twosum.exe	4d790aad833992e6

@@ -1,0 +1,114 @@
+BASIC
+
+CPP is an Object oriented language - OPERATORS
+C is an Procedural programming language - PPL 
+
+There are 90 keywords in CPP
+
+// - Comment
+/* comment
+        comment*/
+
+VARIABLE TYPES
+int 
+float
+char
+bool
+double
+struct
+pointer
+array
+enum
+
+<< - Insertion operator
+>> - Extraction Operator
+
+HEADER FILES
+inBuilt - #include<name>
+userDefines - #include "name.h"
+
+OPERATORS IN CPP
+
+
+By Default a decimal number is considered a double by the compiler.
+to make it float, pass the number as 14.4f -> with a "f"
+
+#################################
+While Loop Syntax
+while(condition):{
+        code
+}
+
+DO While loop Syntax
+do{
+        code
+}while(condition);
+
+###############################
+//break stops the current iteration and exits from the loop
+//continue stops the current iteration and jump to the next iteration
+
+###############################
+Pointer is a data type that holds the address of other data types
+& -> Address of Operator
+* -> Dereference Operator
+
+###############################
+Array is a collection of items of similar type stored in contiguoues memory locations
+Syntax = data type var_name[size] = {elements}
+!size is optional
+ 
+###############################
+Structures
+typedef struct employee   //used to give pet name, so that we dont have to do "struct employee <name>"
+{
+    int id;   //4
+    char fav;   //1
+    float salary; //4
+} ep;   //ep can be used instead of empolyee / pet name
+
+HERE THE DIFFERENCE BETWEEN STRUCT AND UNION IS THAT THE UNION CAN BE USED TO SAVE SOME MEMORY 
+AS ONLY 1 VARIABLE IS INITIALIZED IN IT INSTEAD OF ALL OF THEM LIKE IN STRUCTURES.
+THE UNION CAN BE USED IN A SITUATION WHERE ONLY ONE OF THE THINGS IS TO BE DONE(INITIALIZE)
+
+union payment{
+    int cash;   //4
+    char upi; //1
+    float netbanking; //4
+}
+
+####################################
+inline Function
+This function replaces the code with the function call and runs it in the main segment only, instead of runing it out side the main function.
+use inline function only when the operation is short and not very complex, coz it takes a lot of memory
+Syntax:
+inline <type> function_name(){
+        code
+}
+########################################
+OOP 
+Why classes over Structures?
+-variables in the structures can be accessed by anyone as data abstraction ins't valid.
+-Structures can not hold functions where as classes can.
+
+If nothing is mentioned, the Access specifier is by default private.
+
+class Base{
+        //class defination
+} child1, child2, child3;     //objects can be created and declared like this too
+        
+
+Properties-
+
+1. Encapsulation - Keeping Data members/member variables and Functions/Methods in a common place, i.e. a class.
+   
+   a. Fully Encapsulation Class - All Data Members are Private. ie. they can only be accessed in the same class.
+      Why do we use this? - 
+        (i) To hide the data.
+        (ii) We can make the class read only.
+        (iii) Code reusability 
+        (iv) Unit Testing
+
+2. Inheritance - If we want to use some properties of a parent class, we can use Inheritance, it reduces repetation.
+
+3. Abstraction - 
