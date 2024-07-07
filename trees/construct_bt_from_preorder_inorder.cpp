@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<map>
 using namespace std;
 
 class TreeNode{
@@ -16,27 +17,25 @@ class TreeNode{
     }
 };
 
-int findPosition(vector<int> inorder, int element, int n){
+void findPosition(vector<int> inorder, map<int,int> &map, int n){
     for (int i = 0; i<n; i++){
-        if (inorder[i] == element)
-            return i;
+        map[inorder[i]] = i;   
     }
-    return -1;
 }
 
-TreeNode* constructFromInPre(vector<int> preorder, vector<int> inorder, int &index, int inorderStart, int inorderEnd, int n){
+TreeNode* constructFromInPre(vector<int> preorder, vector<int> inorder, int &index, int inorderStart, int inorderEnd, map<int,int> nodeToIndex, int n){
 
     if (index >= n || inorderStart > inorderEnd)
         return nullptr;
 
     int element = preorder[index++];
 
-    int posi = findPosition(inorder, element, n);
+    int posi = nodeToIndex[element];
 
     TreeNode* root = new TreeNode(element);
 
-    root -> left = constructFromInPre(preorder, inorder, index, inorderStart, posi - 1, n);
-    root -> right = constructFromInPre(preorder, inorder, index, posi+1, inorderEnd, n);
+    root -> left = constructFromInPre(preorder, inorder, index, inorderStart, posi - 1, nodeToIndex, n);
+    root -> right = constructFromInPre(preorder, inorder, index, posi+1, inorderEnd, nodeToIndex, n);
 
     return root;
 }
@@ -83,7 +82,11 @@ int main(){
     int n = preorder.size();
     int index = 0;
 
-    TreeNode* root = constructFromInPre(preorder, inorder, index, 0, n, n);
+    map<int, int> nodeToIndex;
+    
+    findPosition(inorder, nodeToIndex, n);
+
+    TreeNode* root = constructFromInPre(preorder, inorder, index, 0, n-1, nodeToIndex, n);
 
     levelOrderTraversal(root);
     // inorderprint(root);
