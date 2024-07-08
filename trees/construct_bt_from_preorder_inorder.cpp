@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
-#include<map>
+#include<unordered_map>
 using namespace std;
 
 class TreeNode{
@@ -17,25 +17,17 @@ class TreeNode{
     }
 };
 
-void findPosition(vector<int> inorder, map<int,int> &map, int n){
-    for (int i = 0; i<n; i++){
-        map[inorder[i]] = i;   
-    }
-}
-
-TreeNode* constructFromInPre(vector<int> preorder, vector<int> inorder, int &index, int inorderStart, int inorderEnd, map<int,int> nodeToIndex, int n){
-
+TreeNode* constructFromInPre(vector<int> &preorder, vector<int> &inorder, int &index, int inorderStart, int inorderEnd, unordered_map<int,int> &nodeToIndex, int n){
     if (index >= n || inorderStart > inorderEnd)
-        return nullptr;
+        return NULL;
 
-    int element = preorder[index++];
+    TreeNode* root = new TreeNode(preorder[index]);
+    index++;
 
-    int posi = nodeToIndex[element];
+    int posi = nodeToIndex[root -> val];
 
-    TreeNode* root = new TreeNode(element);
-
-    root -> left = constructFromInPre(preorder, inorder, index, inorderStart, posi - 1, nodeToIndex, n);
-    root -> right = constructFromInPre(preorder, inorder, index, posi+1, inorderEnd, nodeToIndex, n);
+    root -> left = constructFromInPre(preorder, inorder, index, inorderStart, posi - 1, nodeToIndex, n); 
+    root -> right = constructFromInPre(preorder, inorder, index, posi + 1, inorderEnd, nodeToIndex, n); 
 
     return root;
 }
@@ -82,9 +74,10 @@ int main(){
     int n = preorder.size();
     int index = 0;
 
-    map<int, int> nodeToIndex;
-    
-    findPosition(inorder, nodeToIndex, n);
+    unordered_map<int, int> nodeToIndex;
+
+    for (int i = 0; i < n; i++)
+        nodeToIndex[inorder[i]] = i;
 
     TreeNode* root = constructFromInPre(preorder, inorder, index, 0, n-1, nodeToIndex, n);
 
