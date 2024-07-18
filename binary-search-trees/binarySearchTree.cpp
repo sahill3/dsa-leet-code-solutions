@@ -72,8 +72,32 @@ void printInorder(Node* root){
     printInorder(root -> right);
 }
 
+void inorderPredecesor(Node* root, Node* &pred, int val){
+    if (root == nullptr) return;
+
+    if (root -> data == val){
+
+        if (root -> left != nullptr){
+            root = root -> left;
+
+            while (root -> right != nullptr)
+                root = root -> right;
+
+            pred = root;
+        }
+
+        return;
+    }  
+
+    if (val < root -> data)
+        inorderPredecesor(root -> left, pred, val);
+    else{
+        pred = root;
+        inorderPredecesor(root -> right, pred, val);
+    }
+}
+
 int main(){
-    
 
     Node* root = nullptr;
 
@@ -85,12 +109,20 @@ int main(){
     cout << endl;
 
     Node* temp = minVal(root);
-    cout << temp -> data << endl;
+    cout << "Max Value: " << temp -> data << endl;
 
     temp = maxVal(root);
-    cout << temp -> data << endl;
+    cout << "Min Value: " << temp -> data << endl;
+
+    Node* pred = nullptr;
+    inorderPredecesor(root, pred, 30);
+
+    if (pred)
+        cout << "Pred: " << pred -> data;
 
     // 10 8 21 7 27 5 4 3 -1
+
+    // 50 20 70 10 30 90 110 -1
 
     return 0;
 }
