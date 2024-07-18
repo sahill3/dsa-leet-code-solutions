@@ -28,6 +28,7 @@ Node* insertIntoBst(Node* root, int data){
     return root;
 }
 
+
 Node* minVal(Node* root){
     Node* temp = root;
 
@@ -50,6 +51,44 @@ Node* maxVal(Node* root){
         temp = temp -> right;
 
     return temp;
+}
+
+Node* deleteFromBST(Node* root, int val){
+    if (! root)
+        return root;
+
+    if (root -> data == val){
+        //0 child
+        if (!root -> left && !root -> right){
+            delete root;
+            return nullptr;
+        }
+        // only left child
+        else if(root -> left && !root -> right){
+            Node* temp = root -> left;
+            delete root;
+            return temp;
+        }
+        // only right child
+        else if (!root -> left && root -> right){
+            Node* temp = root -> right;
+            delete root;
+            return temp;
+        }
+        // both child exist
+        else{
+            int mini = minVal(root -> right) -> data;
+            root -> data = mini;
+            
+            root -> right = deleteFromBST(root->right, mini);
+            return root;
+        }
+
+    }
+    else if(val < root -> data)
+        root -> left = deleteFromBST(root -> left, val);
+    else
+        root -> right = deleteFromBST(root -> right, val);
 }
 
 void takeinput(Node* &root){
@@ -118,11 +157,17 @@ int main(){
     inorderPredecesor(root, pred, 30);
 
     if (pred)
-        cout << "Pred: " << pred -> data;
+        cout << "Pred: " << pred -> data << endl;
 
     // 10 8 21 7 27 5 4 3 -1
 
     // 50 20 70 10 30 90 110 -1
+
+    root = deleteFromBST(root, 50);
+
+    cout << "Printing the BST: "; 
+    printInorder(root);
+    cout << endl;
 
     return 0;
 }
