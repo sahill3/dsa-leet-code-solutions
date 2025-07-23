@@ -3,29 +3,28 @@
 #include<vector>
 using namespace std;
 
-void permutation(vector<int> input, int index, vector<vector<int>>& ans){
-    if(index >= input.size()){
-        ans.push_back(input);
+void rec(int index, vector<int> &nums, vector<vector<int>> &ans){
+    if (index == nums.size()){
+        ans.push_back(nums);
         return;
     }
 
-    for(int j = index; j < input.size(); j++){      
-        swap(input[index], input[j]);
-        permutation(input, index + 1, ans);
-        swap(input[index], input[j]);
+    for (int i = index; i < nums.size(); i++){
+        swap(nums[i], nums[index]);
+        rec(index+1, nums, ans);
+        swap(nums[i], nums[index]);
     }
 }
 
 int main(){
-    vector<int> input = {1, 2, 3, 4};
+    vector<int> nums = {1,2,3};
     vector<vector<int>> ans;
     int index = 0;
 
-    permutation(input, index, ans);
+    rec(index, nums, ans);
 
-    for(auto &i: ans){
-        for (auto &j: i)
-            cout << j << " ";
+    for (auto vec: ans){
+        for (auto ele: vec) cout << ele << " ";
         cout << endl;
     }
 

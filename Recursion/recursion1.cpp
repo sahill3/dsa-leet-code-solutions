@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 
+// This program calculates 2 raised to the power of n using recursion.
+
 int power(int n){
 
     if(n == 0)
