@@ -21,7 +21,6 @@ class Solution {
     }
   
     int findPages(vector<int> &arr, int k) {
-        // code here
         int n = arr.size();
         if (k > n) return -1; 
         
