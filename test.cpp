@@ -1,25 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int poww(int exp, int base){
-    int temp = base;
-    while(exp-1){
-        temp *= base;
-        exp--;
-    }
-    return temp;
-}
-
 int main(){
     
-    int n = 2;
-    int m = 2;
-    int temp = m;
-    while(n-1){
-        temp *= m;
-        n--;
-    }
-    cout << ceil(1/3);
+    set<int> s;
+
+    s.insert(5);
+    s.insert(1);
+    s.insert(3);
+    s.insert(2);
+    s.insert(4);
 
     return 0;
 }
